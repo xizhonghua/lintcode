@@ -7,21 +7,17 @@ public:
      */
     int backPackII(int m, vector<int> A, vector<int> V) {
         // write your code here
-        map<int, int> f;
-        f[0] = 0;
+        map<int, int> f{{0,0}};
         
         auto max_v = INT_MIN;
         
         for(int i=0;i<A.size();++i) {
-            const int w = A[i];
-            const int v = V[i];
-            
             auto it = f.rbegin();
             while(it != f.rend()) {
-                const int tw = w + it->first;
+                const int tw = A[i] + it->first;
                 if (tw <= m) 
                 {
-                    f[tw] = std::max(f[tw], it->second+v);
+                    f[tw] = std::max(f[tw], it->second+V[i]);
                     max_v = std::max(f[tw], max_v);
                 }
                 ++it;
