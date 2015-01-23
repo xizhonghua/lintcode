@@ -7,45 +7,33 @@ public:
      */
     int majorityNumber(vector<int> nums, int k) {
         // write your code here
-        vector<pair<int,int> > s;
+        vector<int> s(k,0);
+        vector<int> c(k,1);
         map<int,int> m;
+        
         int index = 0;
         
         for(auto n : nums)
         {
             if(m.count(n))
-                s[m[n]].second++;
+                c[m[n]]++;
             else
             {
-                if(s.size()<k) {
-                    m[n] = s.size();
-                    s.push_back(make_pair(n, 1));
-                }
-                else
-                {
-                    s[index].second--;
-                    if(s[index].second==0)
+                    c[index]--;
+                    if(c[index]==0)
                     {
-                        m.erase(s[index].first);
+                        m.erase(s[index]);
                         m[n] = index;
-                        s[index].first = n;
-                        s[index].second = 1;
+                        s[index] = n;
+                        c[index] = 1;
                     }
                     index++;
                     if(index>k) index=0;
-                }
             }
         }
         
-        int max_count = INT_MIN;
-        int ans = 0;
-        for(auto kv:s)
-            if(kv.second > max_count) {
-                max_count = kv.second;
-                ans = kv.first;
-            }
+        auto it = std::max_element(c.begin(), c.end());
         
-        return ans;
+        return s[it-c.begin()];
     }
 };
-
