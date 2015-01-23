@@ -13,7 +13,7 @@ public:
         unordered_map<int,int> m;
         
         for(auto i=0;i<nums.size();++i)
-            m[nums[i]]=i+1;
+            m[nums[i]]=i;
         
         
         for(auto i=0;i<nums.size();++i)
@@ -24,9 +24,9 @@ public:
             
             if(n==left && i != m[left] || n!=left)
             {
-                auto l = min(m[left], i+1);
-                auto h = max(m[left], i+1);
-                return vector<int>{l, h};
+                auto l = min(m[left], i);
+                auto h = max(m[left], i);
+                return vector<int>{l+1, h+1};
             }
         }
         
