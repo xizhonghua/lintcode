@@ -5,7 +5,7 @@ public:
      * @param k: As described
      * @return: The majority number
      */
-    int majorityNumber(vector<int> nums, int k) {
+    int majorityNumber(const vector<int>& nums, const int k) {
         // write your code here
         vector<int> s(k,0);
         vector<int> c(k,1);
@@ -13,7 +13,7 @@ public:
         
         auto index = 0;
         
-        for(auto n : nums)
+        for(const auto n : nums)
         {
             if (m.count(n)) {
                 ++c[m[n]];
@@ -29,9 +29,9 @@ public:
             }
         }
         
-        auto it = std::max_element(c.begin(), c.end());
+        auto it = std::max_element(c.cbegin(), c.cend());
         
-        return s[it-c.begin()];
+        return s[it-c.cbegin()];
     }
 };
 
