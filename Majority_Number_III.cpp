@@ -9,7 +9,7 @@ public:
         // write your code here
         vector<int> s(k,0);
         vector<int> c(k,1);
-        map<int,int> m;
+        unordered_map<int,int> m;
         
         auto index = 0;
         
@@ -34,4 +34,3 @@ public:
         return s[it-c.cbegin()];
     }
 };
-
