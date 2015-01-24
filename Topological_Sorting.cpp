@@ -14,9 +14,9 @@ public:
      * @param graph: A list of Directed graph node
      * @return: Any topological order for the given graph.
      */
-    vector<DirectedGraphNode*> topSort(vector<DirectedGraphNode*> graph) {
+    vector<NODE*> topSort(vector<NODE*>& graph) {
         // write your code here
-        set<NODE*> v;
+        unordered_set<NODE*> v;
         stack<NODE*> s;
         
         for(auto n : graph)
@@ -34,7 +34,7 @@ public:
     }
     
 private:
-    void dfs(NODE* node, set<NODE*>& visited, stack<NODE*>& s)
+    void dfs(NODE* node, unordered_set<NODE*>& visited, stack<NODE*>& s)
     {
         visited.insert(node);
         for(auto n : node->neighbors)
