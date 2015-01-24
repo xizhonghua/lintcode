@@ -8,13 +8,12 @@ public:
     int kthLargestElement(int k, vector<int> nums) {
         // write your code here
         
-        return kth(k-1, 0, nums.size()-1, nums);
+        return kth(k, 0, nums.size()-1, nums);
     }
 private:
    int kth(int k, int l, int r, vector<int>& n)
     {
-    	
-        if(l==r && k==0) return n[l];
+        if(l==r && k==1) return n[l];
         
         int i = l, j = r;
         int p = n[(l+r)/2];
@@ -28,7 +27,7 @@ private:
         
         int count = (r - i + 1);
         
-        if(count > k) return kth(k, i, r, n);
+        if(count > k - 1) return kth(k, i, r, n);
         return kth(k-count, l, i-1, n);
     }
 };
