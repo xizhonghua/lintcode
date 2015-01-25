@@ -23,12 +23,9 @@ public:
             });
         
         for(auto i=1;i<=size;++i)
-            if(f[i].first == f[i-1].first) {
-                auto start = f[i-1].second+1;
-                auto end = f[i].second;
-                return vector<int>{start, end};
-            }
+            if(f[i].first == f[i-1].first)
+                return {f[i-1].second+1, f[i].second};
         
-        return vector<int>{-1,-1};
+        return {-1,-1};
     }
 };
