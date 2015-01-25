@@ -16,12 +16,16 @@ public:
             f[i+1].second = i;
         }
         
-        std::sort(f.begin(), f.end());
+        std::sort(f.begin(), f.end(), 
+            [](const pair<int,int>& a, const pair<int,int>& b) -> bool {
+                if(a.first != b.first) return a.first < b.first;
+                return a.second < b.second;
+            });
         
         for(auto i=1;i<=size;++i)
             if(f[i].first == f[i-1].first) {
-                auto start = min(f[i].second, f[i-1].second)+1;
-                auto end = max(f[i].second, f[i-1].second);
+                auto start = f[i-1].second+1;
+                auto end = f[i].second;
                 return vector<int>{start, end};
             }
         
