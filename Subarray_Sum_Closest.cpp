@@ -1,4 +1,8 @@
-// O(nlogn) 2023 ms
+// pre-processing: O(n) 
+// sort: O(nlogn)
+// post-processing: O(n)
+// total : O(nlogn)
+// time: 2700 ms
 class Solution {
 public:
     /**
@@ -35,16 +39,9 @@ public:
             if(error>=min_error) continue;
             min_error = error;
          
-            if(f[i].second < f[i-1].second)   
-            {
-                start = f[i].second+1;
-                end = f[i-1].second;
-            } else {
-                start = f[i-1].second+1;
-                end = f[i].second;
-            }
+            start = min(f[i].second, f[i-1].second)+1;
+            end = max(f[i].second, f[i-1].second);
             
-            if(start == -1) start = end;
         }
             
         return vector<int>{start, end};
