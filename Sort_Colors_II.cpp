@@ -8,9 +8,8 @@ public:
     void sortColors2(vector<int> &colors, int k) {
         // write your code here
         auto r =  colors.size()-1;
-        auto e = r;
-        for(auto i=0;i<k;++i)
-            e = partition(colors, 0, e, k-i-1);
+        for(auto i=0;i<k-1;++i)
+            r = partition(colors, 0, r, k-i-1);
     }
     
 private:
