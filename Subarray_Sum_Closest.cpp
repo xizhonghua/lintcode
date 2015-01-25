@@ -14,8 +14,6 @@ public:
         // write your code here
         auto size = nums.size();
         
-        if(size == 1) return {0,0};
-        
         vector<pair<int,int>> f(size+1, make_pair(0,0));
         
         f[0].second = -1;
@@ -30,8 +28,8 @@ public:
         
         auto min_error = INT_MAX;
         
-        auto start = -1;
-        auto end = -1;
+        auto start = 0;
+        auto end = 0;
         
         for(auto i=1;i<=size;++i)
         {
@@ -44,7 +42,7 @@ public:
             
         }
             
-        return vector<int>{start, end};
+        return {start, end};
     }
 };
 
