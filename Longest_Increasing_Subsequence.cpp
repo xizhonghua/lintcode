@@ -18,3 +18,26 @@ public:
     }
 };
 
+/////////////////////////////////////////////////////////////////////
+class Solution {
+public:
+    /**
+     * @param nums: The integer array
+     * @return: The length of LIS (longest increasing subsequence)
+     */
+    int longestIncreasingSubsequence(vector<int> nums) {
+        // write your code here
+        
+        multiset<int> s;
+        
+        for(const auto n : nums) {
+            s.insert(n);
+            auto it = s.upper_bound(n);
+            if(it != s.end()) s.erase(it);
+        }
+        
+        return s.size();
+    }
+};
+
+
