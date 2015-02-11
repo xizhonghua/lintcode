@@ -23,16 +23,10 @@ private:
         
         auto mid = ((long long)(l)+r)/2;
         
-        // cout<<"l = "<<l<<" r = "<<r<< " mid = "<<mid<<endl;
-        
         if(cut(L, k, mid))
-        {
             return cut(L, k, mid+1) ? bs(L, k, mid+1, r) : mid;
-        }
-        else
-        {
-            return bs(L, k, l, mid-1);
-        }
+        
+        return bs(L, k, l, mid-1);
     }
     
     bool cut(const vector<int>& L, const int k, const int len) {
