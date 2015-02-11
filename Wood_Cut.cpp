@@ -9,11 +9,11 @@ public:
         // write your code here        
         if(L.size()==0) return 0;
         
-        std::sort(L.begin(), L.end(), std::greater<int>());
+        const auto max_element = *std::max_element(L.begin(), L.end());
         
-        if(k==1) return L[0];
+        if(k==1) return max_element;
         
-        return bs(L, k, 1, L[0]);
+        return bs(L, k, 1, max_element);
     }
 
 private:
