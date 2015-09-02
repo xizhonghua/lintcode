@@ -1,3 +1,4 @@
+// Total Runtime: 83 ms
 class Solution {
 public:
     /**
@@ -9,6 +10,7 @@ public:
     vector<vector<int> > kSumII(vector<int> A, int k, int target) {
         vector<vector<int>> ans;
         vector<int> cur;
+        std::sort(A.begin(), A.end());
         dfs(0, k, 0, target, 0, A, cur, ans);
         return ans;
     }
@@ -19,7 +21,7 @@ private:
             return;
         }
         for(int i=start;i<A.size();++i) {
-            if(sum+A[i]>target) continue;
+            if(sum+A[i]>target) break;
             cur.push_back(A[i]);
             dfs(depth+1, k, sum+A[i], target, i+1, A, cur, ans);
             cur.pop_back();
