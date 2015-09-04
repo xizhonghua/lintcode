@@ -38,19 +38,15 @@ public:
 
         deque<string> tokens(beg, end);
         
-        const string val = tokens.front(); tokens.pop_front();
-        
-        return deserialize(tokens, val);
+        return deserialize(tokens);
     }
 private:
-    TreeNode *deserialize(deque<string>& tokens, const string& val) {
-        if(tokens.size()==0) return nullptr;
+    TreeNode *deserialize(deque<string>& tokens) {
+        const string val = tokens.front(); tokens.pop_front();
+        if(val == "#") return nullptr;
         TreeNode *node = new TreeNode(std::stoi(val));
-        const string val_left = tokens.front(); tokens.pop_front();
-        if(val_left != "#") node->left = deserialize(tokens, val_left);
-        
-        const string val_right = tokens.front(); tokens.pop_front();
-        if(val_right != "#") node->right = deserialize(tokens, val_right);
+        node->left = deserialize(tokens);
+        node->right = deserialize(tokens);
         return node;
     }
 };
